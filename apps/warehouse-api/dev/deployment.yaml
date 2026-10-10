@@ -4,7 +4,7 @@ metadata:
   name: warehouse-api
   namespace: warehouse-dev
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -23,7 +23,7 @@ spec:
         runAsUser: 10001
       containers:
         - name: warehouse-api
-          image: warehouse-api:v1.0.0
+          image: warehouse-api:v3.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
@@ -35,11 +35,11 @@ spec:
                   key: APP_ENV
           resources:
             requests:
-              cpu: "100m"
-              memory: "128Mi"
-            limits:
-              cpu: "250m"
+              cpu: "200m"
               memory: "256Mi"
+            limits:
+              cpu: "500m"        # INCREASED CPU LIMIT TO 500m
+              memory: "512Mi"     # INCREASED RAM LIMIT TO 512Mi
           livenessProbe:
             httpGet:
               path: /healthz
