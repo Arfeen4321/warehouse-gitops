@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: warehouse-api-config
+  namespace: warehouse-dev
+data:
+  APP_ENV: "development"
+  LOG_LEVEL: "info"
