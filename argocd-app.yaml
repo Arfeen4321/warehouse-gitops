@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: warehouse-api-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: '/home/ubuntu/gitops-platform-project/warehouse-gitops'
+    targetRevision: HEAD
+    path: apps/warehouse-api/dev
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: warehouse-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
