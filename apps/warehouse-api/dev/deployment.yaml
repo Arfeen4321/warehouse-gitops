@@ -23,7 +23,7 @@ spec:
         runAsUser: 10001
       containers:
         - name: warehouse-api
-          image: warehouse-api:v3.0.0
+          image: warehouse-api:v5.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
