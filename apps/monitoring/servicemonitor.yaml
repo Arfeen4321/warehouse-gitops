@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: warehouse-api-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+      - warehouse-dev
+  selector:
+    matchLabels:
+      app: warehouse-api
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
